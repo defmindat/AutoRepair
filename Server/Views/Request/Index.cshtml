@@ -1,0 +1,27 @@
+﻿@model Application.InputModels.CreateRequestModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>Создание Заявки</h2>
+
+@using (Html.BeginForm("Create", "Request"))
+{
+    <div>
+        @Html.LabelFor(m => m.Description)
+        @Html.EditorFor(m => m.Description)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.CustomerId)
+        @Html.EditorFor(m => m.CustomerId)
+    </div>
+@*     <div> *@
+@*          @Html.LabelFor(m => m.SourceInfo) *@
+@*          @Html.DropDownListFor(m => m.C, ViewBag.Companies as IEnumerable<SelectListItem>) *@
+@*     </div> *@
+    <div>
+        <input type="submit" value="Save" />
+    </div>
+}
