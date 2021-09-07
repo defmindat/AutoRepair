@@ -33,5 +33,11 @@ namespace Persistence.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public bool Add(Customer aggregate)
+        {
+            _dbContext.Customers.Add(aggregate);
+            return _dbContext.SaveChanges() >0;
+        }
     }
 }

@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
-        <RootNamespace>WebApplication1</RootNamespace>
+        <RootNamespace>AutoRepair</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -29,6 +29,8 @@
 
     <ItemGroup>
       <Folder Include="Areas\Identity\Data\" />
+      <Folder Include="Content\styles" />
+      <Folder Include="Pages" />
     </ItemGroup>
 
 </Project>

@@ -4,9 +4,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Persistence.Models;
-using WebApplication1.Models;
+using AutoRepair.Models;
+using AutoRepair.Models.Roles;
 
-namespace WebApplication1.Controllers
+namespace AutoRepair.Controllers
 {
     public class RolesController : Controller
     {

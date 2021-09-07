@@ -1,0 +1,67 @@
+﻿@model Application.InputModels.RegisterInputModel;
+@{
+    ViewBag.Title = "Создание записи о клиенте";
+    Layout = "_Layout";
+}
+<h2>Happy to have you on board!</h2>
+<form method="POST" action="@Url.Content("~/customer/create")">
+    <fieldset style="margin-top: 50px">
+        <legend>Tell us more about you.</legend>
+        <div class="col-xs-7">
+
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-user"></span>
+                </span>
+                <input id="lastname" name="lastname" type="text" class="form-control" maxlength="20" placeholder="Фамилия">
+            </div>
+
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-user"></span>
+                </span>
+                <input id="firstname" name="firstname" type="text" class="form-control" maxlength="20" placeholder="Имя">
+            </div>
+
+
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-user"></span>
+                </span>
+                <input id="city" name="city" type="text" class="form-control" maxlength="20" placeholder="Город">
+            </div>
+
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-user"></span>
+                </span>
+                <input id="street" name="street" type="text" class="form-control" maxlength="20" placeholder="Улица">
+            </div>
+
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-user"></span>
+                </span>
+                <input id="home" name="home" type="text" class="form-control" maxlength="20" placeholder="Дом">
+            </div>
+
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-user"></span>
+                </span>
+                <input id="flat" name="flat" type="text" class="form-control" maxlength="20" placeholder="Квартира">
+            </div>
+
+            <div class="input-group">
+                <div style="padding-top: 10px;">
+                    <div class="col-xs-9">
+                        <span class="error" style="font-size:1.2em;">@Html.ValidationMessage("failed")</span>
+                    </div>
+                    <div class="col-xs-3">
+                        <input type="submit" class="btn btn-lg btn-primary" value="Create"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</form>

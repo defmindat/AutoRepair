@@ -14,7 +14,8 @@ namespace Persistence.Facade
             Database.EnsureCreated();
 
             Customers = base.Set<Customer>();
-            Vehicles = base.Set<Vehicle>();            
+            Vehicles = base.Set<Vehicle>();
+            Addresses = base.Set<Address>();          
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -27,5 +28,6 @@ namespace Persistence.Facade
 
         public DbSet<Customer> Customers { get; }
         public DbSet<Vehicle> Vehicles { get; }
+        public DbSet<Address> Addresses { get; }
     }
 }

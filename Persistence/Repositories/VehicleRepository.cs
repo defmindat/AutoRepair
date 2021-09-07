@@ -21,6 +21,12 @@ namespace Persistence.Repositories
             throw new System.NotImplementedException();
         }
 
+        public bool Add(Vehicle aggregate)
+        {
+            _dbContext.Vehicles.Add(aggregate);
+            return _dbContext.SaveChanges() >0;
+        }
+
         public Vehicle FindById(int id)
         {
             

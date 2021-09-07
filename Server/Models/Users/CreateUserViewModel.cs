@@ -1,4 +1,4 @@
-﻿namespace WebApplication1.Models
+﻿namespace AutoRepair.Models.Users
 {
     public class CreateUserViewModel
     {

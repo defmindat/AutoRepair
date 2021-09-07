@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Application;
 using Application.Request;
+using Application.Services;
 using DomainModel.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -17,7 +18,7 @@ using Persistence.Facade;
 using Persistence.Models;
 using Persistence.Repositories;
 
-namespace WebApplication1
+namespace AutoRepair
 {
     public class Startup
     {
@@ -35,9 +36,10 @@ namespace WebApplication1
             services.AddScoped<IRequestControllerService, RequestControllerService>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IVehicleRepository, VehicleRepository>();
+            services.AddScoped<ICustomerControllerService, CustomerControllerService>();
 
             services.AddDbContext<DomainModelFacade>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("WebApplication1ContextConnection")));
+                    options.UseSqlServer(Configuration.GetConnectionString("AutoRepairContextConnection")));
             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<DomainModelFacade>();
         }
 

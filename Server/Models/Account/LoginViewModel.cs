@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebApplication1.Models
+namespace AutoRepair.Models.Account
 {
     public class LoginViewModel
     {

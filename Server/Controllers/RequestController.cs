@@ -9,9 +9,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Persistence.Models;
-using WebApplication1.Models;
+using AutoRepair.Models;
 
-namespace WebApplication1.Controllers
+namespace AutoRepair.Controllers
 {
     //TODO добавить функционал с Identity
     public class RequestController : Controller

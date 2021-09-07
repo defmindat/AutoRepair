@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 
-namespace WebApplication1.Models
+namespace AutoRepair.Models.Roles
 {
     public class ChangeRoleViewModel
     {

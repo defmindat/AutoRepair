@@ -6,5 +6,6 @@ namespace DomainModel
     public interface IRepository<TAggregate>
     {
         IList<TAggregate> FindAll();
+        bool Add(TAggregate aggregate);
     }
 }

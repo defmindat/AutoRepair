@@ -5,21 +5,22 @@
 //using Microsoft.EntityFrameworkCore;
 //using Microsoft.Extensions.Configuration;
 //using Microsoft.Extensions.DependencyInjection;
-//using WebApplication1.Data;
-//using WebApplication1.Models;
+//using AutoRepair.Data;
+//using AutoRepair.Models;
 
-//[assembly: HostingStartup(typeof(WebApplication1.Areas.Identity.IdentityHostingStartup))]
-//namespace WebApplication1.Areas.Identity
+//[assembly: HostingStartup(typeof(AutoRepair.Areas.Identity.IdentityHostingStartup))]
+//namespace AutoRepair.Areas.Identity
 //{
 //    public class IdentityHostingStartup : IHostingStartup
 //    {
 //        public void Configure(IWebHostBuilder builder)
 //        {
 //            builder.ConfigureServices((context, services) => {
-//                services.AddDbContext<WebApplication1Context>(options =>
+//                services.AddDbContext<AutoRepairContext>(options =>
 //                    options.UseSqlServer(
-//                        context.Configuration.GetConnectionString("WebApplication1ContextConnection")));                
+//                        context.Configuration.GetConnectionString("AutoRepairContextConnection")));                
 //            });
 //        }
 //    }
 //}
+

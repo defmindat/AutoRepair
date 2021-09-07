@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "WebApplication1": {
+    "AutoRepair": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,

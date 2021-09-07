@@ -2,9 +2,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Persistence.Models;
-using WebApplication1.Models;
+using AutoRepair.Models;
+using AutoRepair.Models.Account;
 
-namespace WebApplication1.Controllers
+namespace AutoRepair.Controllers
 {
     public class AccountController : Controller
     {
@@ -16,36 +17,7 @@ namespace WebApplication1.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
         }
-        [HttpGet]
-        public IActionResult Register()
-        {
-            return View();
-        }
-        [HttpPost]
-        public async Task<IActionResult> Register(RegisterViewModel model)
-        {
-            if(ModelState.IsValid)
-            {
-                User user = new User { Email = model.Email, UserName = model.Email, Year=model.Year};
-                // добавляем пользователя
-                var result = await _userManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-                    // установка куки
-                    await _signInManager.SignInAsync(user, false);
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    foreach (var error in result.Errors)
-                    {
-                        ModelState.AddModelError(string.Empty, error.Description);
-                    }
-                }
-            }
-            return View(model);
-        }
-        
+
         [HttpGet]
         public IActionResult Login(string returnUrl = null)
         {
