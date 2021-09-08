@@ -28,7 +28,7 @@ namespace AutoRepair.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            ModelState.AddModelError("failed", "Oh snap! Change a few things up and try again!");
+            ModelState.AddModelError("failed", "Возникли ошибки при заполнении формы. Проверьте, пожалуйста, правильность и полноту заполнения.");
             return View(model);
         }
     }

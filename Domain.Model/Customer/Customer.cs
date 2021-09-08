@@ -9,10 +9,12 @@ namespace DomainModel.Customers
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get;set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
         public Address Address { get; set; }
         public ICollection<Vehicle> Vehicles { get; set; }
 
-        public static Customer Create(string firstname, string lastname, string city, string street, string home, string flat)
+        public static Customer Create(string firstname, string lastname, string city, string street, string home, string flat, string email, string phone)
         {
             var address = new Address
             {
@@ -26,7 +28,9 @@ namespace DomainModel.Customers
             {
                 FirstName = firstname,
                 LastName = lastname,
-                Address = address
+                Address = address,
+                Email = email,
+                Phone = phone
             };
             
             return customer;

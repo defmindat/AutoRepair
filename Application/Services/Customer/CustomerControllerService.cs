@@ -18,7 +18,7 @@ namespace Application.Services
             if (model.IsValid())
                 return false;
             
-            var customer = Customer.Create(model.FirstName, model.LastName, model.City, model.Street, model.Home, model.Flat);
+            var customer = Customer.Create(model.FirstName, model.LastName, model.City, model.Street, model.Home, model.Flat, model.Email, model.Phone);
             return _customerRepository.Add(customer);
         }
     }
