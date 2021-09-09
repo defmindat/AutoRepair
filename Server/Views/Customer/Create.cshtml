@@ -6,48 +6,49 @@
 <h2>Happy to have you on board!</h2>
 <form method="POST" action="@Url.Content("~/customer/create")">
     <fieldset style="margin-top: 50px">
-        <legend>Tell us more about you.</legend>
+        <legend>Редактирование клиента</legend>
         <div class="col-xs-7">
+            
+            @Html.HiddenFor(x => x.Id)
 
             <div class="input-group input-group-lg">
-                @Html.EditorFor(model => model.LastName)
+                @Html.EditorFor(model => model.LastName, new {htmlAttributes = new {placeholder = @Html.DisplayNameFor(m=>m.LastName)}})
                 @Html.ValidationMessageFor(model => model.LastName)
             </div>
 
             <div class="input-group input-group-lg">
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-user"></span>
-                </span>
-                <input id="firstname" name="firstname" type="text" class="form-control" maxlength="20" placeholder="Имя">
-            </div>
-
-
-            <div class="input-group input-group-lg">
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-user"></span>
-                </span>
-                <input id="city" name="city" type="text" class="form-control" maxlength="20" placeholder="Город">
+                @Html.EditorFor(model => model.FirstName, new {htmlAttributes = new {placeholder = @Html.DisplayNameFor(m=>m.FirstName)}})
+                @Html.ValidationMessageFor(model => model.FirstName)
             </div>
 
             <div class="input-group input-group-lg">
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-user"></span>
-                </span>
-                <input id="street" name="street" type="text" class="form-control" maxlength="20" placeholder="Улица">
+                @Html.EditorFor(model => model.Phone, new {htmlAttributes = new {placeholder = @Html.DisplayNameFor(m=>m.Phone)}})
+                @Html.ValidationMessageFor(model => model.Phone)
             </div>
 
             <div class="input-group input-group-lg">
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-user"></span>
-                </span>
-                <input id="home" name="home" type="text" class="form-control" maxlength="20" placeholder="Дом">
+                @Html.EditorFor(model => model.Email, new {htmlAttributes = new {placeholder = @Html.DisplayNameFor(m=>m.Email)}})
+                @Html.ValidationMessageFor(model => model.Email)
             </div>
 
             <div class="input-group input-group-lg">
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-user"></span>
-                </span>
-                <input id="flat" name="flat" type="text" class="form-control" maxlength="20" placeholder="Квартира">
+                @Html.EditorFor(model => model.City, new {htmlAttributes = new {placeholder = @Html.DisplayNameFor(m=>m.City)}})
+                @Html.ValidationMessageFor(model => model.City)
+            </div>
+
+            <div class="input-group input-group-lg">
+                @Html.EditorFor(model => model.Street, new {htmlAttributes = new {placeholder = @Html.DisplayNameFor(m=>m.Street)}})
+                @Html.ValidationMessageFor(model => model.Street)
+            </div>
+
+            <div class="input-group input-group-lg">
+                @Html.EditorFor(model => model.Home, new {htmlAttributes = new {placeholder = @Html.DisplayNameFor(m=>m.Home)}})
+                @Html.ValidationMessageFor(model => model.Home)
+            </div>
+
+            <div class="input-group input-group-lg">
+                @Html.EditorFor(model => model.Flat, new {htmlAttributes = new {placeholder = @Html.DisplayNameFor(m=>m.Flat)}})
+                @Html.ValidationMessageFor(model => model.Flat)
             </div>
 
             <div class="input-group">
