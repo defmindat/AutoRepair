@@ -7,5 +7,7 @@ namespace DomainModel
     {
         IList<TAggregate> FindAll();
         bool Add(TAggregate aggregate);
+        bool Update(TAggregate aggregate);
+        TAggregate FindById(long id);
     }
 }

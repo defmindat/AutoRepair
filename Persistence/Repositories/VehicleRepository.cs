@@ -16,18 +16,20 @@ namespace Persistence.Repositories
             _dbContext = dbContext;
         }
 
-        public IList<Vehicle> FindAll()
-        {
-            throw new System.NotImplementedException();
-        }
-
+        public IList<Vehicle> FindAll() => _dbContext.Vehicles.ToList();
         public bool Add(Vehicle aggregate)
         {
             _dbContext.Vehicles.Add(aggregate);
             return _dbContext.SaveChanges() >0;
         }
 
-        public Vehicle FindById(int id)
+        public bool Update(Vehicle aggregate)
+        {
+            _dbContext.Vehicles.Update(aggregate);
+            return _dbContext.SaveChanges() > 0;
+        }
+
+        public Vehicle FindById(long id)
         {
             
             try

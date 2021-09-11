@@ -13,22 +13,35 @@ namespace AutoRepair.Controllers
             _service = customerControllerService;
         }
 
-        // GET
-        public IActionResult Create()
+        [HttpGet]
+        public IActionResult Edit(long id)
         {
-            return View();
+            return View(id != default ? _service.GetCustomer(id) : null);
         }
 
         [HttpPost]
-        public IActionResult Create(RegisterInputModel model)
+        public IActionResult Edit(RegisterInputModel model)
         {
-            var succeeded = _service.Register(model);
-            if (succeeded)
+            if (ModelState.IsValid)
             {
-                return RedirectToAction("Index", "Home");
+                if (model.Id == default)
+                {
+                    var succeeded = _service.Register(model);
+                    if (succeeded)
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+
+                var editSucceeded = _service.Edit(model);
+                if (editSucceeded)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
             }
 
-            ModelState.AddModelError("failed", "Возникли ошибки при заполнении формы. Проверьте, пожалуйста, правильность и полноту заполнения.");
+            ModelState.AddModelError("failed",
+                "Возникли ошибки при заполнении формы. Проверьте, пожалуйста, правильность и полноту заполнения.");
             return View(model);
         }
     }

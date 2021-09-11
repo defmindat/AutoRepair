@@ -5,6 +5,7 @@ namespace Application.InputModels
     public class RegisterInputModel
     {
         public long Id { get; set; }
+        public long AddressId { get; set; }
         
         [Required(ErrorMessage = "Введите имя")]
         [Display(Name = "имя")]
@@ -24,7 +25,7 @@ namespace Application.InputModels
         [Display(Name = "дом")]
         public string Home { get; set; }
         [Required(ErrorMessage = "Введите квартиру")]
-        [Display(Name = "город")]
+        [Display(Name = "квартира")]
         public string Flat { get; set; }
         [Required(ErrorMessage = "Введите email")]
         [Display(Name = "email")]

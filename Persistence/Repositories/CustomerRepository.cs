@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DomainModel.Customers;
 using DomainModel.Repositories;
+using Microsoft.EntityFrameworkCore;
 using Persistence.Facade;
 
 namespace Persistence.Repositories
@@ -15,7 +16,13 @@ namespace Persistence.Repositories
             _dbContext = dbContext;
         }
 
-        public Customer FindById(int id)
+        public bool Update(Customer aggregate)
+        {
+            _dbContext.Customers.Update(aggregate);
+            return _dbContext.SaveChanges() > 0;
+        }
+
+        public Customer FindById(long id)
         {            
             try
             {
@@ -29,10 +36,7 @@ namespace Persistence.Repositories
             return null;
         }
 
-        public IList<Customer> FindAll()
-        {
-            throw new NotImplementedException();
-        }
+        public IList<Customer> FindAll() => _dbContext.Customers.ToList();
 
         public bool Add(Customer aggregate)
         {

@@ -4,12 +4,13 @@
     Layout = "_Layout";
 }
 <h2>Happy to have you on board!</h2>
-<form method="POST" action="@Url.Content("~/customer/create")">
+<form method="POST" action="@Url.Content("~/customer/edit")">
     <fieldset style="margin-top: 50px">
         <legend>Редактирование клиента</legend>
         <div class="col-xs-7">
             
             @Html.HiddenFor(x => x.Id)
+            @Html.HiddenFor(x => x.AddressId)
 
             <div class="input-group input-group-lg">
                 @Html.EditorFor(model => model.LastName, new {htmlAttributes = new {placeholder = @Html.DisplayNameFor(m=>m.LastName)}})

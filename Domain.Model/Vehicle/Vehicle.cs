@@ -2,7 +2,7 @@
 {
     public class Vehicle: IAggregateRoot
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string Firm { get; set; }
         public string Model { get; set; }
         public int Year { get; set; }
