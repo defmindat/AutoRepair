@@ -23,10 +23,7 @@ namespace AutoRepair.Areas.Identity.Pages.Account
 
         public IActionResult OnGet(string code = null)
         {
-            if (code == null)
-            {
-                return BadRequest("A code must be supplied for password reset.");
-            }
+            if (code == null) return BadRequest("A code must be supplied for password reset.");
 
             Input = new InputModel
             {

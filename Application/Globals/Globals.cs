@@ -1,13 +1,12 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
 namespace Application
 {
     public class Globals
     {
-        public static Boolean IsAnyNullOrEmpty(params String[] tokens)
+        public static bool IsAnyNullOrEmpty(params string[] tokens)
         {
-            return tokens.Any(String.IsNullOrWhiteSpace);
-        } 
+            return tokens.Any(string.IsNullOrWhiteSpace);
+        }
     }
 }

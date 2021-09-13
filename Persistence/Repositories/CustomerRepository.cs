@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using DomainModel.Customers;
 using DomainModel.Repositories;
-using Microsoft.EntityFrameworkCore;
 using Persistence.Facade;
 
 namespace Persistence.Repositories
 {
-    public class CustomerRepository: ICustomerRepository
+    public class CustomerRepository : ICustomerRepository
     {
         private readonly DomainModelFacade _dbContext;
+
         public CustomerRepository(DomainModelFacade dbContext)
         {
             _dbContext = dbContext;
@@ -23,7 +23,7 @@ namespace Persistence.Repositories
         }
 
         public Customer FindById(long id)
-        {            
+        {
             try
             {
                 var customer = (from c in _dbContext.Customers where c.Id == id select c).Single();
@@ -33,15 +33,19 @@ namespace Persistence.Repositories
             {
                 // return new MissingCustomer();
             }
+
             return null;
         }
 
-        public IList<Customer> FindAll() => _dbContext.Customers.ToList();
+        public IList<Customer> FindAll()
+        {
+            return _dbContext.Customers.ToList();
+        }
 
         public bool Add(Customer aggregate)
         {
             _dbContext.Customers.Add(aggregate);
-            return _dbContext.SaveChanges() >0;
+            return _dbContext.SaveChanges() > 0;
         }
     }
 }

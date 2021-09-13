@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using DomainModel.Vehicles;
-using DomainModel.WorkShops;
 
 namespace DomainModel.Customers
 {

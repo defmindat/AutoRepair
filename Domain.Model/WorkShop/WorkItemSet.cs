@@ -9,8 +9,8 @@ namespace DomainModel.WorkShops
         // 1. Визуальный Осмотр
         // 2. Проверка поршневой группы
         // 3. и т.д.
-        public ICollection<WorkItemTemplate> WorkItemTemplates { get; set; }
-
+        public long Id { get; set; }
         public string Name { get; set; }
+        public ICollection<WorkItemTemplate> WorkItemTemplates { get; set; }
     }
 }

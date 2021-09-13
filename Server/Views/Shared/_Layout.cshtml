@@ -27,19 +27,19 @@
                     </li>
                 </ul>
             </div>
-            
-            @if(User.Identity.IsAuthenticated)
+
+            @if (User.Identity.IsAuthenticated)
             {
-                <p>@User.Identity.Name</p>
-             
-                <form method="post" asp-controller="Account" asp-action="Logout">
-                    <input type="submit" value="Выход" />
+                <p class="user-login">@User.Identity.Name</p>
+
+                <form method="post" asp-controller="Login" asp-action="Logout">
+                    <input type="submit" value="Выход"/>
                 </form>
             }
             else
             {
-                <a asp-controller="Account" asp-action="Login">Вход</a>
-                <a asp-controller="Account" asp-action="Register">Регистрация</a>
+                <a class="login-button" asp-controller="Login" asp-action="Login">Вход</a>
+                <a class="login-button" asp-controller="Users" asp-action="Create">Регистрация</a>
             }
         </div>
     </nav>
@@ -61,6 +61,6 @@
 <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 
 <script src="~/js/site.js" asp-append-version="true"></script>
-@await RenderSectionAsync("Scripts", required: false)
+@await RenderSectionAsync("Scripts", false)
 </body>
 </html>

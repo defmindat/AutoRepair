@@ -2,7 +2,7 @@
 
 namespace DomainModel.Repositories
 {
-    public interface IAddressRepository: IRepository<Address>
+    public interface IAddressRepository : IRepository<Address>
     {
     }
 }

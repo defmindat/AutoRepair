@@ -12,7 +12,8 @@ namespace DomainModel.Works
         public ICollection<SparePartLine> SparePartLines { get; set; }
         public WorkItemTemplate WorkItemTemplate { get; set; }
 
-        public static WorkItem CreateNewForWork(Work work, ICollection<SparePartLine> lines, WorkItemTemplate template, Employee employee)
+        public static WorkItem CreateNewForWork(Work work, ICollection<SparePartLine> lines, WorkItemTemplate template,
+            Employee employee)
         {
             var item = new WorkItem
             {

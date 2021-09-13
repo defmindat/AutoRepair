@@ -1,6 +1,6 @@
 ﻿namespace DomainModel.Vehicles
 {
-    public class Vehicle: IAggregateRoot
+    public class Vehicle : IAggregateRoot
     {
         public long Id { get; set; }
         public string Firm { get; set; }
@@ -9,8 +9,9 @@
         public decimal EngineVolume { get; set; }
         public HandSide HandSide { get; set; }
     }
-    
-    public enum HandSide{
+
+    public enum HandSide
+    {
         LHD,
         RHD
     }

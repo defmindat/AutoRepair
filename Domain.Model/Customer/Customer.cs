@@ -4,18 +4,19 @@ using DomainModel.Vehicles;
 
 namespace DomainModel.Customers
 {
-    public class Customer: IAggregateRoot
+    public class Customer : IAggregateRoot
     {
         public long Id { get; set; }
         public string FirstName { get; set; }
-        public string LastName { get;set; }
+        public string LastName { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
         public Address Address { get; set; }
         public long AddressId { get; set; }
         public ICollection<Vehicle> Vehicles { get; set; }
 
-        public static Customer Create(string firstname, string lastname, string city, string street, string home, string flat, string email, string phone)
+        public static Customer Create(string firstname, string lastname, string city, string street, string home,
+            string flat, string email, string phone)
         {
             var address = new Address
             {
@@ -24,7 +25,7 @@ namespace DomainModel.Customers
                 Home = home,
                 Flat = flat
             };
-            
+
             var customer = new Customer
             {
                 FirstName = firstname,
@@ -33,9 +34,10 @@ namespace DomainModel.Customers
                 Email = email,
                 Phone = phone
             };
-            
+
             return customer;
         }
+
         public Request CreateRequest(Vehicle vehicle, string description, SourceInfo sourceInfo)
         {
             var request = new Request

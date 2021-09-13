@@ -1,5 +1,3 @@
-using System;
-
 namespace AutoRepair.Models
 {
     public class ErrorViewModel

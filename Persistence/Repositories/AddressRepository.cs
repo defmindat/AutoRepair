@@ -7,7 +7,7 @@ using Persistence.Facade;
 
 namespace Persistence.Repositories
 {
-    public class AddressRepository: IAddressRepository
+    public class AddressRepository : IAddressRepository
     {
         private readonly DomainModelFacade _dbContext;
 
@@ -16,12 +16,15 @@ namespace Persistence.Repositories
             _dbContext = dbContext;
         }
 
-        public IList<Address> FindAll() => _dbContext.Addresses.ToList();
+        public IList<Address> FindAll()
+        {
+            return _dbContext.Addresses.ToList();
+        }
 
         public bool Add(Address aggregate)
         {
             _dbContext.Addresses.Add(aggregate);
-            return _dbContext.SaveChanges() >0;
+            return _dbContext.SaveChanges() > 0;
         }
 
         public bool Update(Address aggregate)
@@ -41,6 +44,7 @@ namespace Persistence.Repositories
             {
                 // return new MissingCustomer();
             }
+
             return null;
         }
     }

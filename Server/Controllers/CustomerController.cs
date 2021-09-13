@@ -20,24 +20,18 @@ namespace AutoRepair.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(RegisterInputModel model)
+        public IActionResult Edit(EditCustomerInputModel model)
         {
             if (ModelState.IsValid)
             {
                 if (model.Id == default)
                 {
                     var succeeded = _service.Register(model);
-                    if (succeeded)
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
+                    if (succeeded) return RedirectToAction("Index", "Home");
                 }
 
                 var editSucceeded = _service.Edit(model);
-                if (editSucceeded)
-                {
-                    return RedirectToAction("Index", "Home");
-                }
+                if (editSucceeded) return RedirectToAction("Index", "Home");
             }
 
             ModelState.AddModelError("failed",

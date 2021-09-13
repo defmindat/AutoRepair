@@ -1,6 +1,6 @@
-﻿namespace AutoRepair.Models.Users
+﻿namespace Application.InputModels
 {
-    public class EditUserViewModel
+    public class EditUserInputModel
     {
         public string Id { get; set; }
         public string Email { get; set; }

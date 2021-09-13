@@ -4,8 +4,8 @@ namespace Application.Services
 {
     public interface ICustomerControllerService
     {
-        bool Register(RegisterInputModel model);
-        bool Edit(RegisterInputModel model);
-        RegisterInputModel GetCustomer(long id);
+        bool Register(EditCustomerInputModel model);
+        bool Edit(EditCustomerInputModel model);
+        EditCustomerInputModel GetCustomer(long id);
     }
 }

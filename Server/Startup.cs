@@ -1,23 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Application;
 using Application.Request;
 using Application.Services;
 using AutoMapper;
 using AutoRepair.Mapper;
+using DomainModel;
 using DomainModel.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Persistence.Facade;
-using Persistence.Models;
 using Persistence.Repositories;
 
 namespace AutoRepair
@@ -34,24 +29,21 @@ namespace AutoRepair
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
-            var mapperConfig = new MapperConfiguration(mc =>
-            {
-                mc.AddProfile(new MappingProfile());
-            });
+            var mapperConfig = new MapperConfiguration(mc => { mc.AddProfile(new MappingProfile()); });
 
-            IMapper mapper = mapperConfig.CreateMapper();
+            var mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
-            
+
             services.AddControllersWithViews();
             services.AddScoped<IRequestControllerService, RequestControllerService>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IAddressRepository, AddressRepository>();
             services.AddScoped<IVehicleRepository, VehicleRepository>();
+            services.AddScoped<IWorkshopRepository, WorkshopRepository>();
             services.AddScoped<ICustomerControllerService, CustomerControllerService>();
 
             services.AddDbContext<DomainModelFacade>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("AutoRepairContextConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("AutoRepairContextConnection")));
             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<DomainModelFacade>();
         }
 
@@ -74,13 +66,14 @@ namespace AutoRepair
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    "default",
+                    "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

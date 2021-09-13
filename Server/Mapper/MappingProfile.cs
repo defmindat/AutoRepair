@@ -1,18 +1,30 @@
 ﻿using Application.InputModels;
 using AutoMapper;
 using DomainModel.Customers;
+using DomainModel.Offices;
+using DomainModel.WorkShops;
 
 namespace AutoRepair.Mapper
 {
-    public class MappingProfile: Profile
-    { 
-        public MappingProfile() {
-            // Add as many of these lines as you need to map your objects
-            CreateMap<Customer, RegisterInputModel>().IncludeMembers(x => x.Address);
-            CreateMap<Address, RegisterInputModel>(MemberList.None);
-            CreateMap<RegisterInputModel, Customer>();
-            CreateMap<RegisterInputModel, Address>();
+    public class MappingProfile : Profile
+    {
+        public MappingProfile()
+        {
+            // EditCustomerInputModel
+            CreateMap<Customer, EditCustomerInputModel>().IncludeMembers(x => x.Address);
+            CreateMap<Address, EditCustomerInputModel>(MemberList.None);
+            
+            CreateMap<EditCustomerInputModel, Customer>();
+            CreateMap<EditCustomerInputModel, Address>();
+            
+            // EditWorkshopInputModel
+            CreateMap<WorkShop, EditWorkshopInputModel>();
+            CreateMap<Address, EditWorkshopInputModel>(MemberList.None);
+            CreateMap<Office, EditWorkshopInputModel>(MemberList.None);
+
+            CreateMap<EditWorkshopInputModel, WorkShop>();
+            CreateMap<EditWorkshopInputModel, Office>();
+            CreateMap<EditWorkshopInputModel, Address>();
         }
-        
     }
 }

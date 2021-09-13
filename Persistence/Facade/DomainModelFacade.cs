@@ -1,12 +1,14 @@
-﻿using DomainModel.Customers;
+﻿using DomainModel;
+using DomainModel.Customers;
+using DomainModel.Offices;
 using DomainModel.Vehicles;
+using DomainModel.WorkShops;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Persistence.Models;
 
 namespace Persistence.Facade
 {
-    public class DomainModelFacade: IdentityDbContext<User>
+    public class DomainModelFacade : IdentityDbContext<User>
     {
         public DomainModelFacade(DbContextOptions<DomainModelFacade> options)
             : base(options)
@@ -15,8 +17,16 @@ namespace Persistence.Facade
 
             Customers = base.Set<Customer>();
             Vehicles = base.Set<Vehicle>();
-            Addresses = base.Set<Address>();          
+            Addresses = base.Set<Address>();
+            Offices = base.Set<Office>();
+            WorkShops = base.Set<WorkShop>();
         }
+
+        public DbSet<Customer> Customers { get; }
+        public DbSet<Vehicle> Vehicles { get; }
+        public DbSet<Address> Addresses { get; }
+        public DbSet<Office> Offices { get; }
+        public DbSet<WorkShop> WorkShops { get; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -25,9 +35,5 @@ namespace Persistence.Facade
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
         }
-
-        public DbSet<Customer> Customers { get; }
-        public DbSet<Vehicle> Vehicles { get; }
-        public DbSet<Address> Addresses { get; }
     }
 }

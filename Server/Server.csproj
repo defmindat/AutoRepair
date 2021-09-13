@@ -30,6 +30,7 @@
     <ItemGroup>
       <Folder Include="Areas\Identity\Data\" />
       <Folder Include="Content\styles" />
+      <Folder Include="Models\Users" />
       <Folder Include="Pages" />
     </ItemGroup>
 

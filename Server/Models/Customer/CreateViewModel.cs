@@ -3,11 +3,11 @@
     public class CreateViewModel
     {
         public string FirstName { get; set; }
-        public string LastName { get;set; }
-        public AddressDto Address { get; set; }
+        public string LastName { get; set; }
+        public AddressViewModel Address { get; set; }
     }
-    
-    public class AddressDto
+
+    public class AddressViewModel
     {
         public string City { get; set; }
         public string Street { get; set; }

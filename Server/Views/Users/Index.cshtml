@@ -1,12 +1,14 @@
-﻿@model IEnumerable<Persistence.Models.User>
+﻿@model IEnumerable<DomainModel.User>
 @{
     ViewBag.Title = "Список пользователей";
 }
- 
+
 <a asp-action="Create">Добавить пользователя</a>
- 
+
 <table class="table">
-    <tr><th>Email</th><th>Год</th><th></th></tr>
+    <tr>
+        <th>Email</th><th>Год</th><th></th>
+    </tr>
     @foreach (var user in Model)
     {
         <tr>

@@ -1,38 +1,24 @@
-﻿@model Application.InputModels.EditCustomerInputModel;
+﻿@model Application.InputModels.EditWorkshopInputModel;
 @{
-    ViewBag.Title = "Создание записи о клиенте";
+    ViewBag.Title = "Редактирование записи о мастерской";
     Layout = "_Layout";
 }
 <h2>Happy to have you on board!</h2>
-<form method="POST" action="@Url.Content("~/customer/edit")">
+<form method="POST" action="@Url.Content("~/workshop/edit")">
     <fieldset style="margin-top: 50px">
-        <legend>Редактирование клиента</legend>
+        <legend>Редактирование мастерской</legend>
         <div class="col-xs-7">
 
             @Html.HiddenFor(x => x.Id)
             @Html.HiddenFor(x => x.AddressId)
+            @Html.HiddenFor(x => x.OfficeId)
 
             <div class="input-group input-group-lg">
-                @Html.EditorFor(model => model.LastName, new {htmlAttributes = new {placeholder = Html.DisplayNameFor(m => m.LastName)}})
-                @Html.ValidationMessageFor(model => model.LastName)
+                @Html.EditorFor(model => model.Name, new {htmlAttributes = new {placeholder = Html.DisplayNameFor(m => m.Name)}})
+                @Html.ValidationMessageFor(model => model.Name)
             </div>
-
-            <div class="input-group input-group-lg">
-                @Html.EditorFor(model => model.FirstName, new {htmlAttributes = new {placeholder = Html.DisplayNameFor(m => m.FirstName)}})
-                @Html.ValidationMessageFor(model => model.FirstName)
-            </div>
-
-            <div class="input-group input-group-lg">
-                @Html.EditorFor(model => model.Phone, new {htmlAttributes = new {placeholder = Html.DisplayNameFor(m => m.Phone)}})
-                @Html.ValidationMessageFor(model => model.Phone)
-            </div>
-
-            <div class="input-group input-group-lg">
-                @Html.EditorFor(model => model.Email, new {htmlAttributes = new {placeholder = Html.DisplayNameFor(m => m.Email)}})
-                @Html.ValidationMessageFor(model => model.Email)
-            </div>
-
-            <div class="input-group input-group-lg">
+            
+             <div class="input-group input-group-lg">
                 @Html.EditorFor(model => model.City, new {htmlAttributes = new {placeholder = Html.DisplayNameFor(m => m.City)}})
                 @Html.ValidationMessageFor(model => model.City)
             </div>
@@ -51,7 +37,13 @@
                 @Html.EditorFor(model => model.Flat, new {htmlAttributes = new {placeholder = Html.DisplayNameFor(m => m.Flat)}})
                 @Html.ValidationMessageFor(model => model.Flat)
             </div>
-
+            
+            <div class="input-group input-group-lg">
+                @Html.EditorFor(model => model.OfficeAddressSameWorkshop)
+                @Html.LabelFor(model => model.OfficeAddressSameWorkshop)
+                @Html.ValidationMessageFor(model => model.OfficeAddressSameWorkshop)
+            </div>
+            
             <div class="input-group">
                 <div style="padding-top: 10px;">
                     <div class="col-xs-9">

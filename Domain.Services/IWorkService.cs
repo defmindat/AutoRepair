@@ -1,9 +1,6 @@
-﻿using System;
-
-namespace Domain.Services
+﻿namespace Domain.Services
 {
     public interface IWorkService
     {
-        
     }
 }
