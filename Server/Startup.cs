@@ -3,6 +3,7 @@ using Application.Request;
 using Application.Services;
 using AutoMapper;
 using AutoRepair.Mapper;
+using AutoRepair.Middleware;
 using DomainModel;
 using DomainModel.Repositories;
 using Microsoft.AspNetCore.Builder;
@@ -61,6 +62,7 @@ namespace AutoRepair
                 app.UseHsts();
             }
 
+            app.UseMiddleware(typeof(ExceptionHandlingMiddleware));
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
