@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using DomainModel.Customers;
 
 namespace Application.InputModels
 {
@@ -49,5 +50,10 @@ namespace Application.InputModels
         // public Employee SeniorEmployee { get; set; }
         // public List<WorkItemSet> WorkSets { get; set; }
         // public List<WorkItemTemplate> WorkItems { get; set; }
+        
+        public bool IsValid()
+        {
+            return !Globals.IsAnyNullOrEmpty(Name, City, Street, Home);
+        }
     }
 }

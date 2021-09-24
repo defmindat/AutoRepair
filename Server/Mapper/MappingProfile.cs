@@ -18,13 +18,16 @@ namespace AutoRepair.Mapper
             CreateMap<EditCustomerInputModel, Address>();
             
             // EditWorkshopInputModel
-            CreateMap<WorkShop, EditWorkshopInputModel>();
+            CreateMap<Workshop, EditWorkshopInputModel>().IncludeMembers(x => x.Address);
+            CreateMap<Workshop, EditWorkshopInputModel>().IncludeMembers(x => x.Office);
+            
             CreateMap<Address, EditWorkshopInputModel>(MemberList.None);
             CreateMap<Office, EditWorkshopInputModel>(MemberList.None);
 
-            CreateMap<EditWorkshopInputModel, WorkShop>();
-            CreateMap<EditWorkshopInputModel, Office>();
+            CreateMap<EditWorkshopInputModel, Workshop>();
             CreateMap<EditWorkshopInputModel, Address>();
+            // CreateMap<EditWorkshopInputModel, Office>();
+            
         }
     }
 }

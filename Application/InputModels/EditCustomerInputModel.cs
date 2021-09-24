@@ -41,7 +41,7 @@ namespace Application.InputModels
 
         public bool IsValid()
         {
-            return Globals.IsAnyNullOrEmpty(FirstName, LastName, Phone);
+            return !Globals.IsAnyNullOrEmpty(FirstName, LastName, Phone);
         }
     }
 }

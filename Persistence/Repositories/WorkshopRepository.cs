@@ -17,24 +17,24 @@ namespace Persistence.Repositories
             _dbContext = dbContext;
         }
         
-        public IList<WorkShop> FindAll()
+        public IList<Workshop> FindAll()
         {
             return _dbContext.WorkShops.ToList();
         }
 
-        public bool Add(WorkShop aggregate)
+        public bool Add(Workshop aggregate)
         {
             _dbContext.WorkShops.Add(aggregate);
             return _dbContext.SaveChanges() > 0;
         }
 
-        public bool Update(WorkShop aggregate)
+        public bool Update(Workshop aggregate)
         {
             _dbContext.WorkShops.Update(aggregate);
             return _dbContext.SaveChanges() > 0;
         }
 
-        public WorkShop FindById(long id)
+        public Workshop FindById(long id)
         {
             try
             {

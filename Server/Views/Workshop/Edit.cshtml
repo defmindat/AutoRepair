@@ -18,7 +18,7 @@
                 @Html.ValidationMessageFor(model => model.Name)
             </div>
             
-             <div class="input-group input-group-lg">
+            <div class="input-group input-group-lg">
                 @Html.EditorFor(model => model.City, new {htmlAttributes = new {placeholder = Html.DisplayNameFor(m => m.City)}})
                 @Html.ValidationMessageFor(model => model.City)
             </div>
@@ -38,11 +38,33 @@
                 @Html.ValidationMessageFor(model => model.Flat)
             </div>
             
-            <div class="input-group input-group-lg">
-                @Html.EditorFor(model => model.OfficeAddressSameWorkshop)
-                @Html.LabelFor(model => model.OfficeAddressSameWorkshop)
-                @Html.ValidationMessageFor(model => model.OfficeAddressSameWorkshop)
-            </div>
+            @* <div class="input-group input-group-lg"> *@
+            @*     @Html.EditorFor(model => model.OfficeAddressSameWorkshop) *@
+            @*     @Html.LabelFor(model => model.OfficeAddressSameWorkshop) *@
+            @*     @Html.ValidationMessageFor(model => model.OfficeAddressSameWorkshop) *@
+            @* </div> *@
+            
+            @* <div id="office-address"> *@
+            @*     <div class="input-group input-group-lg"> *@
+            @*         @Html.EditorFor(model => model.OfficeCity, new {htmlAttributes = new {placeholder = Html.DisplayNameFor(m => m.OfficeCity)}}) *@
+            @*         @Html.ValidationMessageFor(model => model.OfficeCity) *@
+            @*     </div> *@
+            @* *@
+            @*     <div class="input-group input-group-lg"> *@
+            @*         @Html.EditorFor(model => model.OfficeStreet, new {htmlAttributes = new {placeholder = Html.DisplayNameFor(m => m.OfficeStreet)}}) *@
+            @*         @Html.ValidationMessageFor(model => model.OfficeStreet) *@
+            @*     </div> *@
+            @* *@
+            @*     <div class="input-group input-group-lg"> *@
+            @*         @Html.EditorFor(model => model.OfficeHome, new {htmlAttributes = new {placeholder = Html.DisplayNameFor(m => m.OfficeHome)}}) *@
+            @*         @Html.ValidationMessageFor(model => model.OfficeHome) *@
+            @*     </div> *@
+            @* *@
+            @*     <div class="input-group input-group-lg"> *@
+            @*         @Html.EditorFor(model => model.OfficeFlat, new {htmlAttributes = new {placeholder = Html.DisplayNameFor(m => m.OfficeFlat)}}) *@
+            @*         @Html.ValidationMessageFor(model => model.OfficeFlat) *@
+            @*     </div> *@
+            @* </div> *@
             
             <div class="input-group">
                 <div style="padding-top: 10px;">
@@ -57,3 +79,16 @@
         </div>
     </fieldset>
 </form>
+
+@section Scripts{
+    <script>
+        // $(document).ready(function (){
+        //     $('#office-address').css('display', $('#OfficeAddressSameWorkshop').is(':checked') ? 'none' : 'inline-block' );            
+        //  });
+        //
+        // $('#OfficeAddressSameWorkshop').change(function() {            
+        //     $('#office-address').css('display', $('#OfficeAddressSameWorkshop').is(':checked') ? 'none' : 'inline-block' );
+        // });       
+        
+    </script>
+}

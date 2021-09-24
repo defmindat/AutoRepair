@@ -2,7 +2,7 @@
 
 namespace DomainModel.Repositories
 {
-    public interface IWorkshopRepository: IRepository<WorkShop>
+    public interface IWorkshopRepository: IRepository<Workshop>
     {
     }
 }

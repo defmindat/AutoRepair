@@ -33,7 +33,7 @@ namespace Application.Services
 
         public bool Register(EditCustomerInputModel model)
         {
-            if (model.IsValid())
+            if (!model.IsValid())
                 return false;
 
             var customer = Customer.Create(model.FirstName, model.LastName, model.City, model.Street, model.Home,
@@ -43,7 +43,7 @@ namespace Application.Services
 
         public bool Edit(EditCustomerInputModel model)
         {
-            if (model.IsValid())
+            if (!model.IsValid())
                 return false;
 
             var customer = _mapper.Map<Customer>(model);

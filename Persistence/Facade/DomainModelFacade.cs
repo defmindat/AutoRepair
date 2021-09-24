@@ -19,14 +19,14 @@ namespace Persistence.Facade
             Vehicles = base.Set<Vehicle>();
             Addresses = base.Set<Address>();
             Offices = base.Set<Office>();
-            WorkShops = base.Set<WorkShop>();
+            WorkShops = base.Set<Workshop>();
         }
 
         public DbSet<Customer> Customers { get; }
         public DbSet<Vehicle> Vehicles { get; }
         public DbSet<Address> Addresses { get; }
         public DbSet<Office> Offices { get; }
-        public DbSet<WorkShop> WorkShops { get; }
+        public DbSet<Workshop> WorkShops { get; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
