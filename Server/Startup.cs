@@ -41,6 +41,7 @@ namespace AutoRepair
             services.AddScoped<IAddressRepository, AddressRepository>();
             services.AddScoped<IVehicleRepository, VehicleRepository>();
             services.AddScoped<IWorkshopRepository, WorkshopRepository>();
+            services.AddScoped<IManagerRepository, ManagerRepository>();
             services.AddScoped<ICustomerControllerService, CustomerControllerService>();
 
             services.AddDbContext<DomainModelFacade>(options =>
