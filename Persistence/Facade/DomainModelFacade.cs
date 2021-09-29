@@ -16,6 +16,7 @@ namespace Persistence.Facade
             Database.EnsureCreated();
 
             Customers = base.Set<Customer>();
+            Managers = base.Set<Manager>();
             Vehicles = base.Set<Vehicle>();
             Addresses = base.Set<Address>();
             Offices = base.Set<Office>();
@@ -23,6 +24,7 @@ namespace Persistence.Facade
         }
 
         public DbSet<Customer> Customers { get; }
+        public DbSet<Manager> Managers { get; }
         public DbSet<Vehicle> Vehicles { get; }
         public DbSet<Address> Addresses { get; }
         public DbSet<Office> Offices { get; }

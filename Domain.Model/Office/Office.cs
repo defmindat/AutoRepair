@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using DomainModel.Customers;
 using DomainModel.Employees;
+using DomainModel.WorkShops;
 
 namespace DomainModel.Offices
 {
@@ -11,6 +12,7 @@ namespace DomainModel.Offices
 
         public string Phone { get; set; }
         public string Inn { get; set;}
+        public virtual ICollection<WorkShop> WorkShops { get; set; }
         public virtual ICollection<Employee> Managers { get; set; }
     }
 }
