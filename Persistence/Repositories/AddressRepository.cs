@@ -1,51 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using DomainModel.Customers;
-using DomainModel.Repositories;
+﻿using DomainModel.Customers;
+using Microsoft.EntityFrameworkCore;
 using Persistence.Facade;
 
 namespace Persistence.Repositories
 {
-    public class AddressRepository : IAddressRepository
+    public class AddressRepository : Repository<Address, long>
     {
-        private readonly DomainModelFacade _dbContext;
-
-        public AddressRepository(DomainModelFacade dbContext)
+        public AddressRepository(DomainModelFacade domainModelFacade) : base(domainModelFacade)
         {
-            _dbContext = dbContext;
         }
 
-        public IList<Address> FindAll()
-        {
-            return _dbContext.Addresses.ToList();
-        }
-
-        public bool Add(Address aggregate)
-        {
-            _dbContext.Addresses.Add(aggregate);
-            return _dbContext.SaveChanges() > 0;
-        }
-
-        public bool Update(Address aggregate)
-        {
-            _dbContext.Addresses.Update(aggregate);
-            return _dbContext.SaveChanges() > 0;
-        }
-
-        public Address FindById(long id)
-        {
-            try
-            {
-                var address = (from c in _dbContext.Addresses where c.Id == id select c).Single();
-                return address;
-            }
-            catch (InvalidOperationException)
-            {
-                // return new MissingCustomer();
-            }
-
-            return null;
-        }
+        protected override DbSet<Address> GetDbSet() => _dbContext.Addresses;
     }
 }

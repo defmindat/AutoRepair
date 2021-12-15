@@ -1,0 +1,62 @@
+﻿@model Application.InputModels.EditOfficeInputModel;
+@{
+    ViewBag.Title = "Создание записи о офисе";
+    Layout = "_Layout";
+}
+<h2>Happy to have you on board!</h2>
+<form method="POST" action="@Url.Content("~/office/edit")">
+    <fieldset style="margin-top: 50px">
+        <legend>Редактирование офиса</legend>
+        <div class="col-xs-7">
+
+            @Html.HiddenFor(x => x.Id)
+            @Html.HiddenFor(x => x.AddressId)
+
+            <div class="input-group input-group-lg">
+                @Html.EditorFor(model => model.Name, new {htmlAttributes = new {placeholder = Html.DisplayNameFor(m => m.Name)}})
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+
+            <div class="input-group input-group-lg">
+                @Html.EditorFor(model => model.Inn, new {htmlAttributes = new {placeholder = Html.DisplayNameFor(m => m.Inn)}})
+                @Html.ValidationMessageFor(model => model.Inn)
+            </div>
+
+            <div class="input-group input-group-lg">
+                @Html.EditorFor(model => model.Phone, new {htmlAttributes = new {placeholder = Html.DisplayNameFor(m => m.Phone)}})
+                @Html.ValidationMessageFor(model => model.Phone)
+            </div>
+
+            <div class="input-group input-group-lg">
+                @Html.EditorFor(model => model.City, new {htmlAttributes = new {placeholder = Html.DisplayNameFor(m => m.City)}})
+                @Html.ValidationMessageFor(model => model.City)
+            </div>
+
+            <div class="input-group input-group-lg">
+                @Html.EditorFor(model => model.Street, new {htmlAttributes = new {placeholder = Html.DisplayNameFor(m => m.Street)}})
+                @Html.ValidationMessageFor(model => model.Street)
+            </div>
+
+            <div class="input-group input-group-lg">
+                @Html.EditorFor(model => model.Home, new {htmlAttributes = new {placeholder = Html.DisplayNameFor(m => m.Home)}})
+                @Html.ValidationMessageFor(model => model.Home)
+            </div>
+
+            <div class="input-group input-group-lg">
+                @Html.EditorFor(model => model.Flat, new {htmlAttributes = new {placeholder = Html.DisplayNameFor(m => m.Flat)}})
+                @Html.ValidationMessageFor(model => model.Flat)
+            </div>
+
+            <div class="input-group">
+                <div style="padding-top: 10px;">
+                    <div class="col-xs-9">
+                        <span class="error" style="font-size:1.2em;">@Html.ValidationMessage("failed")</span>
+                    </div>
+                    <div class="col-xs-3">
+                        <input type="submit" class="btn btn-lg btn-primary" value="Сохранить"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</form>

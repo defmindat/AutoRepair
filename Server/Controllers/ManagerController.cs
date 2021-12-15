@@ -15,17 +15,14 @@ namespace AutoRepair.Controllers
             _userManager = userManager;
         }
         // GET
-        public IActionResult Create()
-        {
-            return View();
-        }
+        
         
         [HttpPost]
-        public async Task<IActionResult> Create(CreateManagerInputModel model)
+        public async Task<IActionResult> Create(EditManagerInputModel model)
         {
             if (ModelState.IsValid)
             {
-                var manager = new Manager {Email = model.Email, Firstname = model.Firstname, Lastname = model.Lastname, UserName = model.Email, Year = model.Year};
+                var manager = new Manager {Email = model.Email, Firstname = model.Firstname, Lastname = model.Lastname, UserName = model.Email, Year = model.Year, OfficeId = model.OfficeId.Value};
                 var result = await _userManager.CreateAsync(manager, model.Password);
                 if (result.Succeeded)
                     return RedirectToAction("Index");
@@ -34,7 +31,6 @@ namespace AutoRepair.Controllers
 
             return View(model);
         }
-        
         public async Task<IActionResult> Edit(string id)
         {
             User user = await _userManager.FindByIdAsync(id);

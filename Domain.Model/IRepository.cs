@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
 
 namespace DomainModel
 {
-    public interface IRepository<TAggregate>
+    public interface IRepository<TAggregate, IdType>
     {
-        IList<TAggregate> FindAll();
+        IQueryable<TAggregate> FindAll();
         bool Add(TAggregate aggregate);
         bool Update(TAggregate aggregate);
-        TAggregate FindById(long id);
+        TAggregate FindById(IdType id);
     }
 }

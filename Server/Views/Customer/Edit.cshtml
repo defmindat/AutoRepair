@@ -11,6 +11,7 @@
 
             @Html.HiddenFor(x => x.Id)
             @Html.HiddenFor(x => x.AddressId)
+            @Html.HiddenFor(x => x.OfficeId)
 
             <div class="input-group input-group-lg">
                 @Html.EditorFor(model => model.LastName, new {htmlAttributes = new {placeholder = Html.DisplayNameFor(m => m.LastName)}})

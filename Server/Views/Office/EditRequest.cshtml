@@ -1,0 +1,39 @@
+﻿@model Application.ViewModels.RequestInitializationViewModel;
+@{
+    ViewBag.Title = "Редактирование заявки";
+    Layout = "_Layout";
+}
+
+@section Scripts
+{
+    <script src="~/select2/js/select2.full.min.js"></script>
+    <script src="~/js/select2.js"></script>
+}
+
+<form method="POST" action="@Url.Content($"~/office/{Model.OfficeId}/request/")">
+    @Html.HiddenFor(x => x.OfficeId,  new { @id = "officeId"})
+    @Html.HiddenFor(x => x.RequestId,  new { @id = "requestId"})
+ 
+    <div class="form-group">
+        <label for="customerId">Клиент</label>
+        <select name="customerId" class="form-control" id="customerId">
+             @if (Model.CustomerId.HasValue)
+             {
+                 <option value="@Model.CustomerId.Value">@Model.CustomerFullName</option>
+             }
+        </select>
+        
+        <label for="vehicleId">Автомобиль</label>
+        <select name="vehicleId" class="form-control" id="vehicleId">
+            @if (Model.VehicleId.HasValue)
+            {
+                <option value="@Model.VehicleId.Value">@Model.VehicleName</option>
+            }
+        </select>
+    </div>
+    
+    
+    <div class="col-xs-3">
+        <input type="submit" class="btn btn-lg btn-primary" value="Сохранить"/>
+    </div>
+</form>

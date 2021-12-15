@@ -7,7 +7,15 @@ namespace AutoRepair
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var host = CreateHostBuilder(args).Build();
+            // Тестовая инициализация данных
+            // using (var serviceScope = host.Services.CreateScope())
+            // {
+            //     var facade = serviceScope.ServiceProvider.GetRequiredService<DomainModelFacade>();
+            //     var initializer = new SampleAppInitializer(facade);
+            //     initializer.Init();
+            // }
+            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args)

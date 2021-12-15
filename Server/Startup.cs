@@ -1,11 +1,15 @@
-using Application;
-using Application.Request;
 using Application.Services;
 using AutoMapper;
 using AutoRepair.Mapper;
 using AutoRepair.Middleware;
+using Domain.Services;
+using Domain.Services.Implementation;
 using DomainModel;
-using DomainModel.Repositories;
+using DomainModel.Customers;
+using DomainModel.Offices;
+using DomainModel.Requests;
+using DomainModel.Vehicles;
+using DomainModel.WorkShops;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -35,18 +39,20 @@ namespace AutoRepair
             var mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
 
-            services.AddControllersWithViews();
-            services.AddScoped<IRequestControllerService, RequestControllerService>();
-            services.AddScoped<ICustomerRepository, CustomerRepository>();
-            services.AddScoped<IAddressRepository, AddressRepository>();
-            services.AddScoped<IVehicleRepository, VehicleRepository>();
-            services.AddScoped<IWorkshopRepository, WorkshopRepository>();
-            services.AddScoped<IManagerRepository, ManagerRepository>();
-            services.AddScoped<ICustomerControllerService, CustomerControllerService>();
-
             services.AddDbContext<DomainModelFacade>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("AutoRepairContextConnection")));
             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<DomainModelFacade>();
+            
+            services.AddControllersWithViews();
+            services.AddScoped<IRepository<Customer, long>, CustomerRepository>();
+            services.AddScoped<IRepository<Address, long>, AddressRepository>();
+            services.AddScoped<IRepository<Office, long>, OfficeRepository>();
+            services.AddScoped<IRepository<Vehicle, long>, VehicleRepository>();
+            services.AddScoped<IRepository<Workshop, long>, WorkshopRepository>();
+            services.AddScoped<IRepository<Manager, string>, ManagerRepository>();
+            services.AddScoped<IRepository<Request, long>, RequestRepository>();
+            services.AddScoped<IOfficeService, OfficeService>();
+            services.AddScoped<IOfficeControllerService, OfficeControllerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,7 +68,7 @@ namespace AutoRepair
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            
             app.UseMiddleware(typeof(ExceptionHandlingMiddleware));
             app.UseHttpsRedirection();
             app.UseStaticFiles();

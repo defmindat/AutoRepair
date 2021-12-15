@@ -1,0 +1,10 @@
+﻿@model Application.ViewModels.DiagnosticViewModel;
+@{
+    ViewBag.Title = "Выбор вида диагностики";
+    Layout = "_Layout";
+}
+
+<form method="POST" action="@Url.Content($"~/request/{Model.RequestId}/diagnostic/edit/")">
+    @Html.HiddenFor(x => x.RequestId,  new { @id = "requestId"})
+    
+ </form>

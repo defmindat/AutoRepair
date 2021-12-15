@@ -1,9 +1,30 @@
-﻿@model Application.InputModels.CreateManagerInputModel
+﻿@model Application.InputModels.EditManagerInputModel
 @{
     ViewBag.Title = "Добавление пользователя";
+    Layout = "_Layout";
 }
+
+@section Scripts
+{
+    <script src="~/select2/js/select2.full.min.js"></script>
+    <script src="~/js/createManager.js"></script>
+}
+
 <form asp-action="Create" asp-controller="Manager">
     <div asp-validation-summary="All" class="text-danger"></div>
+    
+    <label for="officeId">Клиент</label>
+    
+     <div class="form-group">
+            <label for="officeId">Клиент</label>
+             <select name="officeId" class="form-control" id="officeId">
+                 @if (Model?.OfficeId != null)
+                 {
+                     <option value="@Model.OfficeId.Value"></option>
+                 }
+             </select>
+     </div>
+     
     <div class="form-group">
         <label asp-for="Email" class="control-label">Email</label>
         <input type="text" asp-for="Email" class="form-control"/>

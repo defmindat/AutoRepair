@@ -2,7 +2,7 @@
 
 namespace DomainModel.Employees
 {
-    public class Employee : IAggregateRoot
+    public class Employee : IAggregateRoot, IIdentifier<long>
     {
         public long Id { get; set; }
         public string Firstname { get; set; }

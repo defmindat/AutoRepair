@@ -1,6 +1,8 @@
 ﻿using DomainModel;
+using DomainModel.Catalog;
 using DomainModel.Customers;
 using DomainModel.Offices;
+using DomainModel.Requests;
 using DomainModel.Vehicles;
 using DomainModel.WorkShops;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -21,6 +23,9 @@ namespace Persistence.Facade
             Addresses = base.Set<Address>();
             Offices = base.Set<Office>();
             WorkShops = base.Set<Workshop>();
+            DiagnosticItems = base.Set<DiagnosticItem>();
+            WorkItems = base.Set<WorkItem>();
+            Requests = base.Set<Request>();
         }
 
         public DbSet<Customer> Customers { get; }
@@ -29,13 +34,26 @@ namespace Persistence.Facade
         public DbSet<Address> Addresses { get; }
         public DbSet<Office> Offices { get; }
         public DbSet<Workshop> WorkShops { get; }
+        public DbSet<Request> Requests { get; }
+        public DbSet<DiagnosticItem> DiagnosticItems { get; }
+        public DbSet<WorkItem> WorkItems { get; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            // Customize the ASP.NET Identity model and override the defaults if needed.
-            // For example, you can rename the ASP.NET Identity table names and more.
-            // Add your customizations after calling base.OnModelCreating(builder);
+            
+            // Add the shadow property to the model
+
+            // Use the shadow property as a foreign key
+            builder.Entity<Request>()
+                .HasOne(p => p.Office)
+                .WithMany(b => b.Requests)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<Request>()
+                .HasOne(v => v.Vehicle)
+                .WithMany(x => x.Requests)
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

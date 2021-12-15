@@ -1,0 +1,52 @@
+﻿@model Application.ViewModels.VehicleViewModel;
+@{
+    ViewBag.Title = "Регистрация автомобиля";
+    Layout = "_Layout";
+}
+<h2>Happy to have you on board!</h2>
+@Html.HiddenFor(x => x.OfficeId)
+
+<form method="POST" action="@Url.Content($"~/office/{Model?.OfficeId}/customer/{Model?.CustomerId}/vehicle/edit")">
+    <fieldset style="margin-top: 50px">
+        <legend>Редактирование автомобиля</legend>
+        <div class="col-xs-7">
+
+            @Html.HiddenFor(x => x.Id)
+            @Html.HiddenFor(x => x.CustomerId)
+
+            <div class="input-group input-group-lg">
+                @Html.EditorFor(model => model.Firm, new {htmlAttributes = new {placeholder = Html.DisplayNameFor(m => m.Firm)}})
+                @Html.ValidationMessageFor(model => model.Firm)
+            </div>
+
+            <div class="input-group input-group-lg">
+                @Html.EditorFor(model => model.ModelName, new {htmlAttributes = new {placeholder = Html.DisplayNameFor(m => m.ModelName)}})
+                @Html.ValidationMessageFor(model => model.ModelName)
+            </div>
+            @* *@
+            <div class="input-group input-group-lg">
+                @Html.EditorFor(model => model.Year, new {htmlAttributes = new {placeholder = Html.DisplayNameFor(m => m.Year)}})
+                @Html.ValidationMessageFor(model => model.Year)
+            </div>
+
+            <div class="input-group input-group-lg">
+                @Html.TextBoxFor(model => model.EngineVolume), new {htmlAttributes = new {placeholder = Html.DisplayNameFor(m => m.EngineVolume)}})
+                 @Html.ValidationMessageFor(model => model.EngineVolume)
+            </div>
+
+            <select asp-for="HandSide" asp-items="Html.GetEnumSelectList<DomainModel.Vehicles.HandSide>()">
+            </select>
+
+            <div class="input-group">
+                <div style="padding-top: 10px;">
+                    <div class="col-xs-9">
+                        <span class="error" style="font-size:1.2em;">@Html.ValidationMessage("failed")</span>
+                    </div>
+                    <div class="col-xs-3">
+                        <input type="submit" class="btn btn-lg btn-primary" value="Сохранить"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</form>

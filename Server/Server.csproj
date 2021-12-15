@@ -17,7 +17,8 @@
       <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.8">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      </PackageReference>      
+      </PackageReference>
+      <PackageReference Include="Select2.js" Version="4.0.13" />      
     </ItemGroup>
 
     <ItemGroup>
@@ -32,6 +33,10 @@
       <Folder Include="Content\styles" />
       <Folder Include="Models\Users" />
       <Folder Include="Pages" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Views\Request\Index.cshtml" />
     </ItemGroup>
 
 </Project>

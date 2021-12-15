@@ -1,7 +1,7 @@
 ﻿using Application.InputModels;
 using AutoMapper;
-using Domain.Services;
-using DomainModel.Repositories;
+using DomainModel;
+using DomainModel.Customers;
 using DomainModel.WorkShops;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,11 +9,11 @@ namespace AutoRepair.Controllers
 {
     public class WorkshopController : Controller
     {
-        private readonly IWorkshopRepository _workshopRepository;
-        private readonly IAddressRepository _addressRepository;
+        private readonly IRepository<Workshop, long> _workshopRepository;
+        private readonly IRepository<Address, long> _addressRepository;
         private readonly IMapper _mapper;
 
-        public WorkshopController(IWorkshopRepository workshopRepository, IMapper mapper, IAddressRepository addressRepository)
+        public WorkshopController(IRepository<Workshop, long> workshopRepository, IMapper mapper, IRepository<Address, long> addressRepository)
         {
             _workshopRepository = workshopRepository;
             _mapper = mapper;

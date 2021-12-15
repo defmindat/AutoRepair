@@ -1,6 +1,6 @@
 ﻿namespace DomainModel.Customers
 {
-    public class Address
+    public class Address : IIdentifier<long>
     {
         public long Id { get; set; }
         public string City { get; set; }
