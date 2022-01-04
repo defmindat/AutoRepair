@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using DomainModel;
 using DomainModel.Catalog;
 using DomainModel.Customers;
 using DomainModel.Offices;
+using DomainModel.Requests;
 using DomainModel.Vehicles;
 using Persistence.Facade;
 
@@ -29,13 +31,16 @@ namespace Persistence.Utils
             
             _facade.Offices.Add(office);
 
-            _facade.Managers.Add(new Manager
+            var manager = new Manager
             {
-                Firstname = "Andrey", Lastname = "Ivanov", Email = "aaa@mail.ru", EmailConfirmed = true, Office = office,
-                Year = 1990, PasswordHash = "AQAAAAEAACcQAAAAEFa8Dz3G2fQzEJUKucnWMsINMcW6EGoJEXVZLE/qx60jSSGT3jYfa2jo9FpGBXXHKw=="
-            });
+                Firstname = "Andrey", Lastname = "Ivanov", Email = "aaa@mail.ru", EmailConfirmed = true,
+                Office = office,
+                Year = 1990,
+                PasswordHash = "AQAAAAEAACcQAAAAEFa8Dz3G2fQzEJUKucnWMsINMcW6EGoJEXVZLE/qx60jSSGT3jYfa2jo9FpGBXXHKw=="
+            };
+            _facade.Managers.Add(manager);
 
-            _facade.Customers.Add(new Customer
+            var customer = new Customer
             {
                 Email = "bbb@mail.ru", FirstName = "NeIvanov", LastName = "NeAndrey", Office = office, Vehicles =
                     new List<Vehicle>
@@ -47,7 +52,14 @@ namespace Persistence.Utils
                         }
                     },
                 Address = new Address {City = "Novosibirsk", Street = "Krasnii prospect", Home = "1", Flat = "2"}
-            });
+            };
+            _facade.Customers.Add(customer);
+
+            _facade.SaveChanges();
+            
+            var request = Request.Create(customer, office, manager, customer.Vehicles.First(), SourceInfo.Friends);
+            _facade.Requests.Add(request);
+            
             _facade.SaveChanges();
         }
         

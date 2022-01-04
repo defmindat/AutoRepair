@@ -1,0 +1,1 @@
+﻿$(".diagnostic-multiple").select2();

@@ -1,4 +1,6 @@
-﻿using DomainModel.Customers;
+﻿using System.Collections.Generic;
+using DomainModel.Catalog;
+using DomainModel.Customers;
 using DomainModel.Offices;
 using DomainModel.Vehicles;
 
@@ -17,7 +19,7 @@ namespace DomainModel.Requests
         public long VehicleId { get; set; }
         public SourceInfo SourceInfo { get; set; }
         // private ICollection<WorkItem> _workItems { get; set; }
-        // private ICollection<DiagnosticItem> _diagnosticItems { get; set; }
+        public List<DiagnosticItem> DiagnosticItems { get; set; }
         
         public static Request Create(Customer customer, Office office, Manager manager, Vehicle vehicle, SourceInfo info)
         {
@@ -28,7 +30,7 @@ namespace DomainModel.Requests
                 ManagerId = manager.Id, 
                 VehicleId = vehicle.Id, 
                 SourceInfo = info,
-                // _diagnosticItems = new List<DiagnosticItem>(), 
+                DiagnosticItems = new List<DiagnosticItem>(), 
                 // _workItems = new List<WorkItem>(),
                 
             };

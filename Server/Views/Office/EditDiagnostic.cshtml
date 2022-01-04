@@ -4,7 +4,29 @@
     Layout = "_Layout";
 }
 
+@section Scripts
+{
+    <script src="~/select2/js/select2.full.min.js"></script>
+    <script src="~/js/editRequestItems.js"></script>
+}
+
+
+@Html.ActionLink("Назад", "EditRequest", "Office", new {officeId = @Model.OfficeId, requestId = @Model.RequestId})
+
 <form method="POST" action="@Url.Content($"~/request/{Model.RequestId}/diagnostic/edit/")">
     @Html.HiddenFor(x => x.RequestId,  new { @id = "requestId"})
     
- </form>
+    <div class="form-group">
+        <label>Выбор диагностики</label>
+        <select class="diagnostic-multiple" name="diagnosticItems" multiple="multiple">
+            @for (int i = 0; i < Model.Items.Count(); i++)
+            {
+                <option value="@Model.Items[i].Id" selected="@(Model.SelectedDiagnosticItemIds.Contains(Model.Items[i].Id))">@Model.Items[i].DisplayName</option>
+            }
+        </select>
+    </div>
+    
+    <div class="col-xs-3">
+        <input type="submit" class="btn btn-lg btn-primary" value="Сохранить"/>
+    </div>
+</form>

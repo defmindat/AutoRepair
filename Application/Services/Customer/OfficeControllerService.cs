@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Application.Services
 {
+    // Можно вшаращить сюда проверку условий для модели с точки зрения бизнеса
     public class OfficeControllerService : IOfficeControllerService
     {
         private readonly IRepository<Manager, string> _managerRepository;
@@ -156,5 +157,26 @@ namespace Application.Services
             return _officeService.GetOffices(term);
         }
         
+        public ICollection<long> RetrieveSelectedDiagnosticItemIds(long requestId)
+        {
+            return _officeService.GetSelectedDiagnosticItems(requestId);
+        }
+
+        public List<DiagnosticItemDto> RetrieveDiagnosticItems(long requestId)
+        {
+            return _officeService.GetDiagnosticItems(requestId);
+        }
+
+        public void UpdateRequest(EditRequestDiagnosticInputModel model)
+        {
+            var request = _officeService.UpdateRequest(model.RequestId, model.DiagnosticItems);
+            _requestRepository.Update(request);
+        }
+
+        public void UpdateRequest(EditRequestInputModel model)
+        {
+            var request = _officeService.UpdateRequest(model.RequestId.Value, model.CustomerId);
+            _requestRepository.Update(request);
+        }
     }
 }

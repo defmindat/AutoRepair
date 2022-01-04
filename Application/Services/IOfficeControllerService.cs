@@ -17,6 +17,10 @@ namespace Application.Services
         IEnumerable<OfficeSearchResult> RetrieveOffices(string term);
         IEnumerable<CustomerSearchResult> RetrieveCustomers(long officeId, string term);
         IEnumerable<VehicleSearchResult> RetrieveVehicles(long customerId, string term);
+        ICollection<long> RetrieveSelectedDiagnosticItemIds(long requestId);
+        List<DiagnosticItemDto> RetrieveDiagnosticItems(long requestId);
         (Request,bool) CreateRequest(EditRequestInputModel model, string managerId);
+        void UpdateRequest(EditRequestDiagnosticInputModel model);
+        void UpdateRequest(EditRequestInputModel model);
     }
 }

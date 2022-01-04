@@ -15,15 +15,15 @@
     @Html.HiddenFor(x => x.RequestId,  new { @id = "requestId"})
  
     <div class="form-group">
-        <label for="customerId">Клиент</label>
+        <label for="customerId">Клиент</label> @Html.ActionLink("Не нашли клиента, создайте новую запись", "EditCustomer", new {officeId = @Model.OfficeId})
         <select name="customerId" class="form-control" id="customerId">
-             @if (Model.CustomerId.HasValue)
-             {
-                 <option value="@Model.CustomerId.Value">@Model.CustomerFullName</option>
-             }
+            @if (Model.CustomerId.HasValue)
+            {
+                <option value="@Model.CustomerId.Value">@Model.CustomerFullName</option>
+            }
         </select>
-        
-        <label for="vehicleId">Автомобиль</label>
+
+        <label for="vehicleId">Автомобиль</label> <a href="#" onclick="redirectToEditVehicle()">Не нашли автомобиль клиента, создайте новую запись</a>
         <select name="vehicleId" class="form-control" id="vehicleId">
             @if (Model.VehicleId.HasValue)
             {

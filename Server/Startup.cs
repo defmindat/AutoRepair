@@ -5,6 +5,7 @@ using AutoRepair.Middleware;
 using Domain.Services;
 using Domain.Services.Implementation;
 using DomainModel;
+using DomainModel.Catalog;
 using DomainModel.Customers;
 using DomainModel.Offices;
 using DomainModel.Requests;
@@ -51,6 +52,7 @@ namespace AutoRepair
             services.AddScoped<IRepository<Workshop, long>, WorkshopRepository>();
             services.AddScoped<IRepository<Manager, string>, ManagerRepository>();
             services.AddScoped<IRepository<Request, long>, RequestRepository>();
+            services.AddScoped<IRepository<DiagnosticItem, long>, DiagnosticItemRepository>();
             services.AddScoped<IOfficeService, OfficeService>();
             services.AddScoped<IOfficeControllerService, OfficeControllerService>();
         }

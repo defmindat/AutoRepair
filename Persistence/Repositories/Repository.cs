@@ -44,7 +44,7 @@ namespace Persistence.Repositories
             var aggregate = (from c in _dbSet where c.Id.Equals(id) select c).First();
             return aggregate;
         }
-        catch (InvalidOperationException)
+        catch (InvalidOperationException ex)
         {
             // return new MissingCustomer();
         }

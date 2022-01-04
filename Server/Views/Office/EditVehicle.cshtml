@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Регистрация автомобиля";
     Layout = "_Layout";
+    var returnUrl = ViewBag.ReturnUrl;
 }
 <h2>Happy to have you on board!</h2>
 @Html.HiddenFor(x => x.OfficeId)
@@ -13,7 +14,8 @@
 
             @Html.HiddenFor(x => x.Id)
             @Html.HiddenFor(x => x.CustomerId)
-
+            @Html.HiddenFor(x => returnUrl)
+            
             <div class="input-group input-group-lg">
                 @Html.EditorFor(model => model.Firm, new {htmlAttributes = new {placeholder = Html.DisplayNameFor(m => m.Firm)}})
                 @Html.ValidationMessageFor(model => model.Firm)

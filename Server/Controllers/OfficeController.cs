@@ -12,6 +12,7 @@ using DomainModel.Offices;
 using DomainModel.Vehicles;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 
 namespace AutoRepair.Controllers
 {
@@ -172,16 +173,21 @@ namespace AutoRepair.Controllers
         {
             if (ModelState.IsValid)
             {
+                var routeValues = new RouteValueDictionary
+                {
+                    {"officeId", model.OfficeId}
+                };
                 if (!model.RequestId.HasValue)
                 {
                     var manager = await _userManager.GetUserAsync(HttpContext.User);
                     var result = _officeControllerService.CreateRequest(model, manager.Id);
-                    if (result.Item2) return RedirectToAction("Index", "Home");
-                }
-                
-                // var editSucceeded = _officeService.EditCustomer(model);
-                // if (editSucceeded) return RedirectToAction("Index", "Home");
-                return Ok();
+                    routeValues.Add("requestId", result.Item1.Id);
+                    if (result.Item2) return RedirectToAction("EditDiagnostic", routeValues);
+                };
+
+                routeValues.Add("requestId", model.RequestId.Value);
+                _officeControllerService.UpdateRequest(model);
+                return RedirectToAction("EditDiagnostic", routeValues);
             }
             
             ModelState.AddModelError("failed",
@@ -196,8 +202,8 @@ namespace AutoRepair.Controllers
             return View(vehicles);
         }
 
-        [HttpGet("customer/{customerId}/vehicle/edit/{vehicleId?}")]
-        public IActionResult EditVehicle(long officeId, long customerId, long? vehicleId)
+        [HttpGet("office/{officeId}/customer/{customerId}/vehicle/edit/{vehicleId?}")]
+        public IActionResult EditVehicle(long officeId, long customerId, long? vehicleId = null, [FromQuery]string returnUrl="")
         {
             if (vehicleId.HasValue)
             {
@@ -206,25 +212,29 @@ namespace AutoRepair.Controllers
                 var vm = _mapper.Map<VehicleViewModel>(vehicle);
                 return View(vm);
             }
-            
-            var model = new VehicleViewModel()
+
+            var model = new VehicleViewModel
             {
                 Id = vehicleId,
                 CustomerId = customerId,
                 OfficeId = officeId
             };
+
+            ViewBag.ReturnUrl = returnUrl;
             return View(model);
         }
 
-        [HttpPost("customer/{customerId}/vehicle/edit")]
-        public async Task<IActionResult> EditVehicle(EditVehicleInputModel model)
+        [HttpPost("office/{officeId}/customer/{customerId}/vehicle/edit")]
+        public async Task<IActionResult> EditVehicle(EditVehicleInputModel model, [FromForm]string returnUrl="")
         {
             if (ModelState.IsValid) 
             {
                 if (model.Id == default)
                 {
                     var succeeded = _officeControllerService.RegisterNewVehicle(model);
-                    if (succeeded) return RedirectToAction("Index", "Home");
+                    if (succeeded)
+                        if (!string.IsNullOrEmpty(returnUrl)) return Redirect(returnUrl);
+                    else return RedirectToAction("Index", "Home");
                 }
 
                 var editSucceeded = _officeControllerService.EditVehicle(model);
@@ -238,9 +248,19 @@ namespace AutoRepair.Controllers
             return View(model);
         }
 
-        [HttpGet("request/{requestId}/diagnostic/edit")]
-        public IActionResult EditDiagnostic(long requestId)
+        [HttpGet("office/{officeId}/request/{requestId}/diagnostic/edit")]
+        public IActionResult EditDiagnostic(long officeId, long requestId)
         {
+            var selectedItemIds = _officeControllerService.RetrieveSelectedDiagnosticItemIds(requestId);
+            var diagnosticItems = _officeControllerService.RetrieveDiagnosticItems(requestId);
+            var viewModel = new DiagnosticViewModel{OfficeId = officeId, RequestId = requestId, Items = diagnosticItems, SelectedDiagnosticItemIds = selectedItemIds};
+            return View(viewModel);
+        }
+        
+        [HttpPost("office/{officeId}/request/{requestId}/diagnostic/edit")]
+        public IActionResult EditDiagnostic(EditRequestDiagnosticInputModel model)
+        {
+            _officeControllerService.UpdateRequest(model);
             return View();
         }
     }

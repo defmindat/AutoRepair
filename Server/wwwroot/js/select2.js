@@ -54,3 +54,10 @@ $("#vehicleId").select2({
         }
     }
 });
+
+redirectToEditVehicle = function(){    
+    debugger;
+    window.location.replace(window.location.origin + "/office/"+ $("#officeId").val() + "/customer/" + $("#customerId").val() + 
+        "/vehicle/edit?returnUrl=" + "/office/" + $("#officeId").val() + "/request");
+    return false;
+}

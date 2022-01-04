@@ -12,5 +12,7 @@ namespace DomainModel.Catalog
         public int Hours { get; set; }
         public long OfficeId { get; set; }
         public Office Office { get; set; }
+
+        public override string ToString() => Name;
     }
 }
